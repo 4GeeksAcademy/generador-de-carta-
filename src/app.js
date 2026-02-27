@@ -27,19 +27,24 @@ window.onload = function () {
       return randomNumberAndHeads
     }
 
-    carta.innerHTML = '<div class="content fs-1 container bg-light border rounded my-4 w-50 "></div>';
+    carta.innerHTML = '<div class="content fs-1 container bg-light border rounded my-4"></div>';
     const content = document.querySelector(".content")
     content.innerHTML = `<div>${sign}</div>` + `<div class="container py-5 text-center" style=" font-size:9rem" >${randomNumberAndHeads()}</div><div class="text-end">${sign}</div>`
+    content.style.width = "20rem";
+
+
   }
   generateCard()
 
   let button = document.createElement("button");
-  button.innerHTML ="Click me!"
-  button.classList.add("btn-primary", "btn", "text-center")
-  document.body.appendChild(button)
+  button.innerHTML = "Click me!";
+  button.classList.add("btn-primary", "btn", "text-center", "d-block", "mx-auto");
+  document.body.appendChild(button);
+  let btn = document.querySelector(".btn")
+  
 
 
-
+btn.addEventListener("click", generateCard)
 
 
 
