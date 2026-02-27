@@ -1,65 +1,45 @@
 import "bootstrap";
 import "./style.css";
 
-
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
 window.onload = function () {
-  //write your code here
-  function generateCard() {
 
-    const carta = document.querySelector("#carta")
-    const signs = ["♦", "♥", "♠", "♣"];
-    const numbersAndHeads = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
+  const carta = document.querySelector("#carta");
 
-    function randomSign() {
-      let randomSign = signs[Math.floor(Math.random() * signs.length)]
-      if (randomSign === "♦" || randomSign === "♥") {
-        return `<span style="color: red;">${randomSign}</span>`;
-      };
-      return randomSign
-    }
-    let sign = randomSign()
-    function randomNumberAndHeads() {
-      let randomNumberAndHeads = numbersAndHeads[Math.floor(Math.random() * numbersAndHeads.length)]
+  const SIGNS = ["♦", "♥", "♠", "♣"];
+  const VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
-      return randomNumberAndHeads
-    }
-
-    carta.innerHTML = '<div class="content fs-1 container bg-light border rounded my-4"></div>';
-    const content = document.querySelector(".content")
-    content.innerHTML = `<div>${sign}</div>` + `<div class="container py-5 text-center" style=" font-size:9rem" >${randomNumberAndHeads()}</div><div class="text-end">${sign}</div>`
-    content.style.width = "20rem";
-
-
+  function getRandom(array) {
+    return array[Math.floor(Math.random() * array.length)];
   }
-  generateCard()
 
-  let button = document.createElement("button");
-  button.innerHTML = "Click me!";
-  button.classList.add("btn-primary", "btn", "text-center", "d-block", "mx-auto");
+  function getSignHTML(sign) {
+    const isRed = sign === "♦" || sign === "♥";
+    return `<span style="color:${isRed ? "red" : "black"}">${sign}</span>`;
+  }
+
+  function generateCard() {
+    const sign = getRandom(SIGNS);
+    const value = getRandom(VALUES);
+
+    carta.innerHTML = `
+      <div class="fs-1 container bg-light border rounded my-4 text-center" style="width:20rem;">
+        <div class="text-start">${getSignHTML(sign)}</div>
+        <div class="py-5" style="font-size:9rem">${value}</div>
+        <div class="text-end">${getSignHTML(sign)}</div>
+      </div>
+    `;
+  }
+
+  generateCard();
+
+  const button = document.createElement("button");
+  button.innerHTML = "Generate card";
+  button.classList.add("btn", "btn-primary", "d-block", "mx-auto");
+  button.addEventListener("click", generateCard);
+
   document.body.appendChild(button);
-  let btn = document.querySelector(".btn")
-  
-
-
-btn.addEventListener("click", generateCard)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 };
