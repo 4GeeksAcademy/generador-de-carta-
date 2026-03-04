@@ -30,6 +30,7 @@ window.onload = function () {
         <div class="py-5" style="font-size:9rem">${value}</div>
         <div class="text-end">${getSignHTML(sign)}</div>
       </div>
+     
     `;
   }
 
